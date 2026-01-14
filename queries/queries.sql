@@ -20,13 +20,13 @@ SELECT UPPER(nombre) as nombre, precio FROM producto;
 SELECT LOWER(nombre) as nombre, precio FROM producto;
 
 -- 8. Llista el nom de tots els fabricants en una columna, i en una altra columna obtingui en majúscules els dos primers caràcters del nom del fabricant (iniciales).
-SELECT nombre, LEFT(nombre, 2) AS iniciales FROM producto;
+SELECT nombre, LEFT(nombre, 2) AS iniciales FROM fabricante;
 
 -- 9. Llista els noms i els preus dels productes, arrodonint el valor del preu (precio)
-SELECT nombre, ROUND(precio) FROM producto;
+SELECT nombre, ROUND(precio) as precio FROM producto;
 
 -- 10. Llista els noms i els preus de tots els productes (precio truncado) de la taula producto, truncant el valor del preu per a mostrar-lo sense cap xifra decimal.
-SELECT nombre, TRUNCATE(precio, 0) FROM producto;
+SELECT nombre, TRUNCATE(precio, 0) as 'precio truncado' FROM producto;
 
 -- 11. Mostra una llista amb els codis dels fabricants que apareixen a la taula producto, incloent possibles repeticions.
 SELECT codigo_fabricante FROM producto;
@@ -59,26 +59,26 @@ SELECT nombre, precio FROM producto ORDER BY precio DESC LIMIT 1;
 SELECT nombre FROM producto WHERE codigo_fabricante = 2;
 
 -- 21. Retorna una llista amb el nom del producte, preu i nom de fabricant (nombre del fabricante) de tots els productes de la base de dades.
-SELECT producto.nombre, producto.precio, fabricante.nombre
+SELECT producto.nombre, producto.precio, fabricante.nombre AS 'nombre del fabricante'
 FROM producto
 JOIN fabricante
 ON fabricante.codigo = producto.codigo_fabricante;
 
 -- 22. Llista tots els productes amb nom, preu i nom del fabricant (nombre del fabricante) ordenats alfabèticament.
-SELECT producto.nombre, producto.precio, fabricante.nombre
+SELECT producto.nombre, producto.precio, fabricante.nombre AS 'nombre del fabricante'
 FROM producto
 JOIN fabricante
 ON fabricante.codigo = producto.codigo_fabricante
 ORDER BY producto.nombre ASC;
 
 -- 23. Retorna una llista amb el codi del producte, nom del producte, codi del fabricant (codigo fabricante) i nom del fabricant (nombre fabricante), de tots els productes de la base de dades.
-SELECT producto.codigo, producto.nombre, fabricante.codigo, fabricante.nombre
+SELECT producto.codigo, producto.nombre, fabricante.codigo AS 'codigo fabricante', fabricante.nombre AS 'nombre fabricante'
 FROM producto
 JOIN fabricante
 ON fabricante.codigo = producto.codigo_fabricante;
 
 -- 24. Retorna el nom, el preu i el nom del fabricant (fabricante), del producte més barat.
-SELECT producto.nombre, producto.precio, fabricante.nombre
+SELECT producto.nombre, producto.precio, fabricante.nombre AS 'fabricant'
 FROM producto
 JOIN fabricante
 ON fabricante.codigo = producto.codigo_fabricante
@@ -86,7 +86,7 @@ ORDER BY precio
 LIMIT 1;
 
 -- 25. Retorna el nom del producte, el preu i el nom del seu fabricant (fabricante), del producte més car.
-SELECT producto.nombre, producto.precio, fabricante.nombre
+SELECT producto.nombre, producto.precio, fabricante.nombre AS 'fabricante'
 FROM producto
 JOIN fabricante
 ON fabricante.codigo = producto.codigo_fabricante
